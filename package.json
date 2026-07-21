@@ -1,0 +1,42 @@
+{
+  "name": "forwebmotion-blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx --fix",
+    "lint:check": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
+    "format": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --write",
+    "format:check": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --check",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.2.1",
+    "@commitlint/config-conventional": "21.2.0",
+    "@eslint-react/eslint-plugin": "5.17.3",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "20.19.43",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.10",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-react-refresh": "0.5.3",
+    "eslint-plugin-simple-import-sort": "14.0.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.1.0",
+    "prettier": "3.9.5",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3"
+  }
+}
