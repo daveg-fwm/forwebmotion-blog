@@ -1,0 +1,50 @@
+---
+description: Applies when creating or modifying frontend components, UI layout files, React hooks and utility functions.
+globs: app/**/*.tsx, components/**/*.tsx, hooks/**/*.ts, utils/**/*.ts
+tags: frontend, nextjs, typescript
+---
+
+# Frontend Standards
+
+## Tech Stack & Core Libraries
+
+- Framework: Next.js 16+ (App Router, Server Actions)
+- Styling: Tailwind CSS
+- UI Components: shadcn/ui (Base UI primitives)
+- Icons: Tabler Icons React
+- i18n: Intlayer
+
+## Critical Rules
+
+- ALWAYS use functional components with native prop type definitions.
+- NEVER export types. ALWAYS use `React.ComponentProps` or, if the component has a ref, use `React.ComponentPropsWithoutRef` and `React.ComponentPropsWithRef`. ALWAYS use the `Parameters` type for function props.
+- Default to **React Server Components (RSC)**. Only append `"use client"` at the very top if managing local state (`useState`), hooks (`useEffect`), or explicit user interaction. The `"use client"` directive is only needed when creating a client boundary.
+- NEVER mix client logic directly into layout files (`layout.tsx`). Keep layouts as pure server components.
+- EVERY component should be reusable.
+
+## Code Conventions & Patterns
+
+- Use **function syntax** for components: `function ComponentName() { return (...) }`.
+- Use **arrow functions** when creating nested functions.
+- Enforce strict TypeScript interfaces for component props instead of types:
+  ```typescript
+  interface ButtonProps {
+    label: string;
+    onClick: () => void;
+  }
+  ```
+- Use the semantic `cn()` utility from `@/utils/` to merge Tailwind classes conditionally. Do not concatenate strings manually.
+
+## Directory & File Naming
+
+- Component folders and files must use kebab-case (e.g., `user-profile/user-profile.tsx`).
+- Primary component file must be named the same as its dedicated folder.
+- Place shared, generic UI components strictly in `@/components/_base/`.
+- ALWAYS create a dedicated folder when installing a shadcn/ui component (e.g., `pnpm dlx shadcn@latest add button`).
+- ALWAYS extract child components to their own files except when `_base` components have multiple parts.
+- Place layout components in `@/components/_layout` if they are only imported into layout files.
+
+## Data Fetching & State
+
+- Fetch data directly inside Server Components using async/await.
+- Handle errors gracefully using standard `try/catch` and log tracking boundaries. Use the system `error.tsx` files for layout catching.
