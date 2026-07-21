@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "analyze": "pnpm next experimental-analyze",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx --fix",
     "lint:check": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
