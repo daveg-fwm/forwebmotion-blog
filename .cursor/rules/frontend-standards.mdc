@@ -33,14 +33,13 @@ tags: frontend, nextjs, typescript
     onClick: () => void;
   }
   ```
-- Use the semantic `cn()` utility from `@/utils/` to merge Tailwind classes conditionally. Do not concatenate strings manually.
+- Use the semantic `cn()` utility from `@/utils/_base/utils` to merge Tailwind classes conditionally. Do not concatenate strings manually.
 
 ## Directory & File Naming
 
 - Component folders and files must use kebab-case (e.g., `user-profile/user-profile.tsx`).
 - Primary component file must be named the same as its dedicated folder.
 - Place shared, generic UI components strictly in `@/components/_base/`.
-- ALWAYS create a dedicated folder when installing a shadcn/ui component (e.g., `pnpm dlx shadcn@latest add button`).
 - ALWAYS extract child components to their own files except when `_base` components have multiple parts.
 - Place layout components in `@/components/_layout` if they are only imported into layout files.
 
