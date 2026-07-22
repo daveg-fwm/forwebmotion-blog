@@ -3,6 +3,12 @@ saveExact: true
 savePrefix: ""
 engineStrict: true
 blockExoticSubdeps: true
+minimumReleaseAgeStrict: true
+overrides:
+  typescript: "6.0.3"
+  uuid: "latest"
 allowBuilds:
+  "@parcel/watcher": true
+  esbuild: true
   sharp: true
   unrs-resolver: true
