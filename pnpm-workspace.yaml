@@ -2,9 +2,7 @@ nodeVersion: 24.18.0
 saveExact: true
 savePrefix: ""
 engineStrict: true
+blockExoticSubdeps: true
 allowBuilds:
   sharp: true
   unrs-resolver: true
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
