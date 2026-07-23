@@ -6,14 +6,8 @@ interface ContentProviderProps {
   children: React.ReactNode;
 }
 
+const components = {};
+
 export function ContentProvider({ children }: ContentProviderProps) {
-  return (
-    <MarkdownProvider
-      components={{
-        h1: (props) => <h1 className="text-2xl" {...props} />,
-      }}
-    >
-      {children}
-    </MarkdownProvider>
-  );
+  return <MarkdownProvider components={components}>{children}</MarkdownProvider>;
 }

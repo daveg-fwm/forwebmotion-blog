@@ -1,12 +1,9 @@
 import "@/styles/globals.css";
 
-import { getHTMLTextDir, getIntlayer } from "intlayer";
+import { getHTMLTextDir } from "intlayer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import {
-  generateStaticParams as generateIntlayerStaticParams,
-  IntlayerClientProvider,
-} from "next-intlayer";
+import { generateStaticParams as generateIntlayerStaticParams } from "next-intlayer";
 import { getLocale } from "next-intlayer/server";
 
 import { ContentProvider } from "@/content/content-provider/content-provider";
@@ -15,13 +12,13 @@ import { cn } from "@/utils/_base/utils";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const locale = await getLocale();
-  const { title, description, keywords } = getIntlayer("metadata", locale);
-
   return {
-    title,
-    description,
-    keywords,
+    title: {
+      template: "%s | Forwebmotion",
+      default: "Forwebmotion",
+    },
+    // description,
+    // keywords,
   };
 };
 
@@ -41,9 +38,7 @@ export default async function RootLayout({
       className={cn("h-full", "antialiased", "font-sans", inter.variable)}
     >
       <body className="flex min-h-full flex-col">
-        <IntlayerClientProvider defaultLocale={locale}>
-          <ContentProvider>{children}</ContentProvider>
-        </IntlayerClientProvider>
+        <ContentProvider>{children}</ContentProvider>
       </body>
     </html>
   );

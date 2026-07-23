@@ -5,23 +5,34 @@ import prettier from "eslint-config-prettier/flat";
 import { reactRefresh } from "eslint-plugin-react-refresh";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import eslintReact from "@eslint-react/eslint-plugin";
+import * as mdx from "eslint-plugin-mdx";
 
 const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  eslintReact.configs["recommended-typescript"],
-  reactRefresh.configs.next(),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", ".intlayer/**"]),
   {
-    plugins: {
-      "simple-import-sort": simpleImportSort,
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      ...nextVitals,
+      ...nextTs,
+      eslintReact.configs["recommended-typescript"],
+      reactRefresh.configs.next(),
+      {
+        plugins: {
+          "simple-import-sort": simpleImportSort,
+        },
+        rules: {
+          "simple-import-sort/imports": "error",
+          "simple-import-sort/exports": "error",
+        },
+      },
+      prettier,
+    ],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
-    rules: {
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-    },
-  },
-  prettier,
-  {
     rules: {
       // All console statements must be removed before commit changes
       "no-console": "error",
@@ -79,14 +90,13 @@ const eslintConfig = defineConfig([
       ],
     },
   },
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+  {
+    files: ["**/*.mdx"],
+    ...mdx.flat,
+    processor: mdx.createRemarkProcessor({
+      lintCodeBlocks: true,
+    }),
+  },
 ]);
 
 export default eslintConfig;
