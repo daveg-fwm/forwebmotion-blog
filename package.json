@@ -12,6 +12,7 @@
     "lint:check": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
     "format": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --write",
     "format:check": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --check",
+    "types": "tsc",
     "prepare": "husky"
   },
   "dependencies": {
@@ -19,9 +20,9 @@
     "@tabler/icons-react": "3.45.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "intlayer": "8.12.4",
-    "next": "16.2.10",
-    "next-intlayer": "8.12.4",
+    "intlayer": "9.0.0",
+    "next": "16.2.11",
+    "next-intlayer": "9.0.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "shadcn": "4.13.1",
