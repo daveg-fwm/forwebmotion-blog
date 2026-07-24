@@ -6,6 +6,8 @@ import { Inter } from "next/font/google";
 import { generateStaticParams as generateIntlayerStaticParams } from "next-intlayer";
 import { getLocale } from "next-intlayer/server";
 
+import { Header } from "@/components/_layout/header/header";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ContentProvider } from "@/content/content-provider/content-provider";
 import { cn } from "@/utils/_base/utils";
 
@@ -31,14 +33,37 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
 
+  /**
+   * Reason for "suppressHydrationWarning":
+   * next/themes can only assign a class and inline style client-side
+   */
   return (
     <html
       lang={locale}
       dir={getHTMLTextDir(locale)}
-      className={cn("h-full", "antialiased", "font-sans", inter.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        "scrollbar-thin scrollbar-thumb-stone-500 scrollbar-track-stone-800",
+        "font-sans",
+        inter.variable,
+      )}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">
-        <ContentProvider>{children}</ContentProvider>
+      <body>
+        <ContentProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            <main className="mx-auto w-198 py-39" id="main-content" role="main">
+              {children}
+            </main>
+          </ThemeProvider>
+        </ContentProvider>
       </body>
     </html>
   );
