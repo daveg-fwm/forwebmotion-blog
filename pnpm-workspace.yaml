@@ -7,6 +7,8 @@ minimumReleaseAgeStrict: true
 overrides:
   typescript: "6.0.3"
   uuid: "latest"
+  "@hono/node-server": "2.0.10"
+  glob: "13.0.6"
 allowBuilds:
   "@parcel/watcher": true
   esbuild: true
