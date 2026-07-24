@@ -1,7 +1,19 @@
-import { getLatestPosts } from "@/utils/get-latest-posts/get-latest-posts";
+import { MarkdownRenderer } from "next-intlayer/markdown";
 
-export default function Homepage() {
-  const latestPosts = getLatestPosts();
+import { getPostsList } from "@/content/utils/get-posts-list/get-posts-list";
 
-  return <div className="typeset">{JSON.stringify(latestPosts)}</div>;
+export default async function Homepage() {
+  const latestPosts = await getPostsList();
+
+  return (
+    <div className="typeset space-y-4">
+      {Object.values(latestPosts).map(({ key, title, description, date }) => (
+        <div key={key}>
+          <MarkdownRenderer>{title}</MarkdownRenderer>
+          <MarkdownRenderer>{description}</MarkdownRenderer>
+          <time dateTime={date}>{date}</time>
+        </div>
+      ))}
+    </div>
+  );
 }
