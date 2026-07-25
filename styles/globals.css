@@ -85,8 +85,8 @@
 }
 
 .dark {
-  --background: oklch(0.147 0.004 49.25);
-  --foreground: oklch(0.985 0.001 106.423);
+  --background: oklch(18.87% 0.00382 48.297);
+  --foreground: oklch(92.318% 0.00249 47.09); /* stone-200 */
   --card: oklch(0.216 0.006 56.043);
   --card-foreground: oklch(0.985 0.001 106.423);
   --popover: oklch(0.216 0.006 56.043);

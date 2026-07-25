@@ -19,6 +19,7 @@ export function Header() {
           width="134"
           height="16"
           alt="Forwebmotion homepage"
+          priority
         />
       </Link>
 

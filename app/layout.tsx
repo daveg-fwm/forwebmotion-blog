@@ -13,6 +13,8 @@ import { cn } from "@/utils/_base/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
+export const dynamic = "force-static";
+
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: {
