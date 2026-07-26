@@ -13,7 +13,7 @@ interface LinkProps extends NextLinkProps {
 
 const variantClassName = {
   underline: "font-medium hover:underline",
-  icon: "inline-flex gap-x-2 items-center font-semibold text-stone-100",
+  icon: "inline-flex gap-x-2 items-center font-semibold text-stone-100 [&>svg]:translate-x-0 hover:[&>svg]:translate-x-1 [&>svg]:transition-transform",
 };
 
 export function Link({ className, children, as, variant, ...props }: LinkProps) {
