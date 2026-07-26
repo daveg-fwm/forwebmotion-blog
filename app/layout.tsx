@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { generateStaticParams as generateIntlayerStaticParams } from "next-intlayer";
 import { getLocale } from "next-intlayer/server";
 
+import { Footer } from "@/components/_layout/footer/footer";
 import { Header } from "@/components/_layout/header/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ContentProvider } from "@/content/content-provider/content-provider";
@@ -63,6 +64,7 @@ export default async function RootLayout({
             >
               {children}
             </main>
+            <Footer />
           </ThemeProvider>
         </ContentProvider>
       </body>
