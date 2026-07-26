@@ -21,7 +21,7 @@ function DropdownMenuContent({
   align = "start",
   alignOffset = 0,
   side = "bottom",
-  sideOffset = 4,
+  sideOffset = 10,
   className,
   ...props
 }: MenuPrimitive.Popup.Props &

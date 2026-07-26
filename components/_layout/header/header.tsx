@@ -5,9 +5,12 @@ import { ToggleTheme } from "@/components/theme/toggle-theme";
 
 export function Header() {
   return (
-    <header className="fixed top-43.5 left-20 z-10 2xl:left-31.5" role="banner">
+    <header
+      className="bg-background/90 fixed top-43.5 left-16 z-10 pr-10 2xl:left-[calc(50%-49.5rem)] 2xl:translate-x-20"
+      role="banner"
+    >
       <a
-        className="sr-only font-medium text-stone-300 focus:not-sr-only focus:absolute focus:-top-20"
+        className="sr-only font-medium text-stone-300 focus:not-sr-only focus:absolute focus:-top-20 focus:p-2"
         href="#main-content"
       >
         Skip to main content
@@ -23,15 +26,15 @@ export function Header() {
         />
       </Link>
 
-      <nav role="navigation" className="my-3.5">
+      <nav role="navigation" className="my-4">
         <ul className="text-stone-300">
           <li>
-            <Link href="#" className="block py-1 hover:underline">
+            <Link href="#" variant="underline" className="inline-block py-1">
               Posts
             </Link>
           </li>
           <li>
-            <Link href="#" className="block py-1 hover:underline">
+            <Link href="#" variant="underline" className="inline-block py-1">
               About
             </Link>
           </li>

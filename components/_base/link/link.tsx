@@ -8,13 +8,19 @@ interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
   href: NextLinkProps["href"] & string;
   as?: "a";
+  variant?: "underline" | "icon";
 }
 
-export function Link({ className, children, as, ...props }: LinkProps) {
+const variantClassName = {
+  underline: "font-medium hover:underline",
+  icon: "inline-flex gap-x-2 items-center font-semibold text-stone-100",
+};
+
+export function Link({ className, children, as, variant, ...props }: LinkProps) {
   const Component = as ?? NextLink;
 
   return (
-    <Component className={cn("font-medium", className)} {...props}>
+    <Component className={cn(variant && variantClassName[variant], className)} {...props}>
       {children}
     </Component>
   );

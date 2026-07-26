@@ -18,9 +18,13 @@ export function ToggleTheme() {
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="outline" size="icon-lg" className="relative overflow-clip p-0">
-            <IconSun className="size-6 translate-0 transition-all duration-1000 dark:translate-full" />
-            <IconMoon className="absolute size-6 -translate-full transition-all duration-1000 dark:translate-0" />
+          <Button
+            variant="outline"
+            size="icon"
+            className="relative overflow-clip p-0 text-stone-400"
+          >
+            <IconSun className="size-6 translate-0 transition-transform duration-1000 dark:translate-[150%]" />
+            <IconMoon className="absolute size-5 translate-[-150%] transition-transform duration-1000 dark:translate-0" />
             <span className="sr-only">Toggle theme</span>
           </Button>
         }
