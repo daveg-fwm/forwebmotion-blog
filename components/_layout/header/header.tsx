@@ -5,7 +5,7 @@ import { ToggleTheme } from "@/components/theme/toggle-theme";
 
 export function Header() {
   return (
-    <header className="fixed top-43.5 left-31.5 z-10" role="banner">
+    <header className="fixed top-43.5 left-20 z-10 2xl:left-31.5" role="banner">
       <a
         className="sr-only font-medium text-stone-300 focus:not-sr-only focus:absolute focus:-top-20"
         href="#main-content"
