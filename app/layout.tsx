@@ -54,12 +54,7 @@ export default async function RootLayout({
     >
       <body>
         <ContentProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             <main className="mx-auto w-198 py-39" id="main-content" role="main">
               {children}

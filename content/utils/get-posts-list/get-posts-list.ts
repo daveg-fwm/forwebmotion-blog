@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { format } from "date-fns";
 import { getLocale, getMarkdownMetadata } from "intlayer";
 
 interface GetPostsListProps {
@@ -19,12 +20,13 @@ export async function getPostsList(range?: GetPostsListProps) {
     const content = fs.readFileSync(filePath, "utf-8");
 
     const metadata: PostMeta = getMarkdownMetadata(content);
+    const date = new Date(metadata.updated ?? metadata.created);
 
     return {
       ...metadata,
       description: `<p>${metadata.description}</p>`,
-      date: metadata.updated ?? metadata.created,
-      slug: file.replace(/\.content.mdx$/, ""),
+      date: format(date, "MMMM do, yyyy"),
+      slug: `/posts/${file.replace(/\.content.mdx$/, "")}`,
     };
   });
 

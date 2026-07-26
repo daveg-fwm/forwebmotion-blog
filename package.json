@@ -21,6 +21,7 @@
     "@tabler/icons-react": "3.45.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
+    "date-fns": "4.4.0",
     "intlayer": "9.0.0",
     "next": "16.2.11",
     "next-intlayer": "9.0.0",

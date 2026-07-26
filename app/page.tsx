@@ -1,6 +1,5 @@
-import { MarkdownRenderer } from "next-intlayer/markdown";
-
 import { HomeHero } from "@/components/home-hero/home-hero";
+import { PostSummary } from "@/components/post-summary/post-summary";
 import { getPostsList } from "@/content/utils/get-posts-list/get-posts-list";
 
 export default async function Homepage() {
@@ -9,13 +8,9 @@ export default async function Homepage() {
   return (
     <>
       <HomeHero />
-      <div className="typeset space-y-4">
-        {Object.values(latestPosts).map(({ key, title, description, date }) => (
-          <div key={key}>
-            <MarkdownRenderer>{title}</MarkdownRenderer>
-            <MarkdownRenderer>{description}</MarkdownRenderer>
-            <time dateTime={date}>{date}</time>
-          </div>
+      <div className="typeset space-y-15">
+        {Object.values(latestPosts).map(({ slug, title, description, date }) => (
+          <PostSummary key={slug} slug={slug} title={title} description={description} date={date} />
         ))}
       </div>
     </>

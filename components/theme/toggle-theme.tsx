@@ -18,14 +18,14 @@ export function ToggleTheme() {
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="outline" size="icon-lg" className="p-0">
-            <IconMoon className="size-6 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-            <IconSun className="absolute size-6 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          <Button variant="outline" size="icon-lg" className="relative overflow-clip p-0">
+            <IconSun className="size-6 translate-0 transition-all duration-1000 dark:translate-full" />
+            <IconMoon className="absolute size-6 -translate-full transition-all duration-1000 dark:translate-0" />
             <span className="sr-only">Toggle theme</span>
           </Button>
         }
       />
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent>
         <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
