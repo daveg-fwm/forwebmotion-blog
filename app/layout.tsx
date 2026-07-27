@@ -58,7 +58,7 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             <main
-              className="mx-auto w-full max-w-188 py-39 2xl:max-w-198"
+              className="mx-auto w-full max-w-196 px-4 pt-18 pb-26 xl:py-39 2xl:max-w-206"
               id="main-content"
               role="main"
             >

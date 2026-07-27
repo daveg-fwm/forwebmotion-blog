@@ -16,7 +16,7 @@ export default async function Homepage() {
       <HomeHero />
 
       <section className="relative">
-        <Badge className="absolute -top-1.5 -left-12.5 -translate-x-full">
+        <Badge className="max-xl:mb-10 xl:absolute xl:-top-1.5 xl:-left-12.5 xl:-translate-x-full">
           {content.postsBadge}
         </Badge>
 
