@@ -15,7 +15,7 @@ interface LinkProps extends NextLinkProps, React.AnchorHTMLAttributes<HTMLAnchor
 }
 
 const variantClassName = {
-  underline: "font-medium hover:underline",
+  underline: "font-medium hover:underline underline-offset-[3px]",
   icon: "inline-flex gap-x-2 items-center font-semibold text-stone-100 [&>svg]:translate-x-0 hover:[&>svg]:translate-x-1 [&>svg]:transition-transform",
 };
 
