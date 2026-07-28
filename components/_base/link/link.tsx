@@ -1,3 +1,4 @@
+import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { type VariantProps } from "class-variance-authority";
 import type { LinkProps as NextLinkProps } from "next/link";
 import NextLink from "next/link";
@@ -16,7 +17,7 @@ interface LinkProps extends NextLinkProps, React.AnchorHTMLAttributes<HTMLAnchor
 
 const variantClassName = {
   underline: "font-medium hover:underline underline-offset-[3px]",
-  icon: "inline-flex gap-x-2 items-center font-semibold text-stone-100 [&>svg]:translate-x-0 hover:[&>svg]:translate-x-1 [&>svg]:transition-transform",
+  icon: "inline-flex gap-x-2 items-center font-semibold text-stone-700 dark:text-stone-100 [&>svg]:scale-x-100 hover:[&>svg]:scale-x-125 [&>svg]:transition-transform",
 };
 
 export function Link({ className, children, as, variant, buttonVariant, ...props }: LinkProps) {
@@ -32,6 +33,7 @@ export function Link({ className, children, as, variant, buttonVariant, ...props
       {...props}
     >
       {children}
+      {variant === "icon" && <IconArrowNarrowRight />}
     </Component>
   );
 }

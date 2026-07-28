@@ -21,12 +21,11 @@ export function Header() {
   return (
     <header
       className={cn(
-        "bg-darker-background/99",
         "fixed left-0 z-10",
-        "max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
+        "max-xl:bg-darker-background/99 max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
         "max-xl:transition-[height] max-xl:transition-discrete",
         showMenu ? "max-xl:h-auto max-xl:py-10" : "max-xl:h-15",
-        "xl:bg-background/90 xl:top-43.5 xl:left-16 xl:pr-10",
+        "xl:top-43.5 xl:left-16 xl:pr-10",
         "2xl:left-[calc(50%-49.5rem)] 2xl:translate-x-20",
       )}
       role="banner"
@@ -43,7 +42,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon-lg"
-            className="-ml-2.5 text-stone-400 hover:bg-transparent xl:hidden dark:hover:bg-transparent"
+            className="-ml-2.5 hover:bg-transparent xl:hidden dark:hover:bg-transparent"
             onClick={onMenuClick}
           >
             <MenuIcon className="size-5" />
@@ -51,6 +50,7 @@ export function Header() {
 
           <Link href="/" className="mb-0.5">
             <Image
+              className="light:invert light:brightness-70"
               src="/images/forwebmotion-logo.svg"
               width="134"
               height="16"
@@ -61,7 +61,7 @@ export function Header() {
         </div>
 
         <nav role="navigation" className="my-4 max-xl:mb-5">
-          <ul className="text-stone-300 max-xl:space-y-2">
+          <ul className="text-nav-foreground max-xl:space-y-2">
             <li>
               <Link href="#" variant="underline" className="inline-block py-1">
                 Posts

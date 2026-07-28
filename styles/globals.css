@@ -3,12 +3,18 @@
 @import "shadcn/tailwind.css";
 @import "./typeset.css";
 
+@custom-variant light (&:is(.light *));
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-darker-background: var(--darker-background);
   --color-foreground: var(--foreground);
+
+  --color-nav-foreground: var(--nav-foreground);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-button-foreground: var(--button-foreground);
+
   --font-sans: var(--font-sans);
   --font-mono: var(--font-sans);
   --font-heading: var(--font-sans);
@@ -51,9 +57,14 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --darker-background: oklch(16.58% 0.00396 48.29);
-  --foreground: oklch(0.147 0.004 49.25);
+  --background: oklch(92.318% 0.00249 47.09); /* stone-200 */
+  --darker-background: oklch(86.866% 0.00423 55.608); /* stone-300 */
+  --foreground: oklch(37.412% 0.00864 67.452); /* stone-700 */
+
+  --nav-foreground: oklch(37.412% 0.00864 67.452); /* stone-700 */
+  --hero-foreground: oklch(55.34% 0.01156 57.906); /* stone-500 */
+  --button-foreground: oklch(55.34% 0.01156 57.906); /* stone-500 */
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.147 0.004 49.25);
   --popover: oklch(1 0 0);
@@ -90,6 +101,11 @@
   --background: oklch(18.87% 0.00382 48.297);
   --darker-background: oklch(16.58% 0.00396 48.29);
   --foreground: oklch(92.318% 0.00249 47.09); /* stone-200 */
+
+  --nav-foreground: oklch(86.9% 0.005 56.366); /* stone-300 */
+  --hero-foreground: oklch(71.608% 0.00899 55.968); /* stone-400 */
+  --button-foreground: oklch(71.608% 0.00899 55.968); /* stone-400 */
+
   --card: oklch(0.216 0.006 56.043);
   --card-foreground: oklch(0.985 0.001 106.423);
   --popover: oklch(0.216 0.006 56.043);

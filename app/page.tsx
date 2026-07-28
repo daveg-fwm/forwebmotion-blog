@@ -1,4 +1,3 @@
-import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { getIntlayer } from "next-intlayer";
 
 import { Badge } from "@/components/_base/badge/badge";
@@ -34,7 +33,6 @@ export default async function Homepage() {
 
         <Link className="mt-20" href="/posts" variant="icon">
           {content.postsLink}
-          <IconArrowNarrowRight />
         </Link>
       </section>
     </>
