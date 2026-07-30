@@ -24,7 +24,7 @@ export function Header() {
         "fixed left-0 z-10",
         "max-xl:bg-darker-background/99 max-xl:light:border-stone-50 max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
         "max-xl:transition-[height] max-xl:transition-discrete",
-        showMenu ? "max-xl:h-auto max-xl:pt-9 max-xl:pb-10" : "max-xl:h-15",
+        showMenu ? "max-xl:h-auto max-xl:pt-4 max-xl:pb-10" : "max-xl:h-15",
         "xl:top-43.5 xl:left-16 xl:pr-10",
         "2xl:left-[calc(50%-49.5rem)] 2xl:translate-x-20",
       )}
@@ -38,16 +38,7 @@ export function Header() {
           Skip to main content
         </a>
 
-        <div className="max-xl:flex max-xl:items-center max-xl:gap-x-3">
-          <Button
-            variant="ghost"
-            size="icon-lg"
-            className="-ml-2.5 hover:bg-transparent xl:hidden dark:hover:bg-transparent"
-            onClick={onMenuClick}
-          >
-            <MenuIcon className="size-5" />
-          </Button>
-
+        <div className="max-xl:flex max-xl:items-center max-xl:justify-between">
           <Link href="/" className="mb-0.5">
             <Image
               className="light:invert light:brightness-70"
@@ -58,9 +49,13 @@ export function Header() {
               priority
             />
           </Link>
+
+          <Button variant="ghost" size="icon-lg" className="xl:hidden" onClick={onMenuClick}>
+            <MenuIcon className="size-5" />
+          </Button>
         </div>
 
-        <nav role="navigation" className="my-4 max-xl:mb-5">
+        <nav role="navigation" className="my-4 max-xl:mb-6">
           <ul className="text-nav-foreground max-xl:space-y-2">
             <li>
               <Link href="#" variant="underline" className="inline-block py-1">

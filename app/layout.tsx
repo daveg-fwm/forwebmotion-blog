@@ -14,8 +14,6 @@ import { cn } from "@/utils/_base/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-export const dynamic = "force-static";
-
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: {
@@ -27,7 +25,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
+/**
+ * Combine generateStaticParams from Intlayer with "force-static"
+ * to ensure that pages are pre-built.
+ */
 export const generateStaticParams = generateIntlayerStaticParams;
+export const dynamic = "force-static";
 
 export default async function RootLayout({
   children,
