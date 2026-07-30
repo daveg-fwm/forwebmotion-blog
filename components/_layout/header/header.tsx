@@ -22,9 +22,9 @@ export function Header() {
     <header
       className={cn(
         "fixed left-0 z-10",
-        "max-xl:bg-darker-background/99 max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
+        "max-xl:bg-darker-background/99 max-xl:light:border-stone-50 max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
         "max-xl:transition-[height] max-xl:transition-discrete",
-        showMenu ? "max-xl:h-auto max-xl:py-10" : "max-xl:h-15",
+        showMenu ? "max-xl:h-auto max-xl:pt-9 max-xl:pb-10" : "max-xl:h-15",
         "xl:top-43.5 xl:left-16 xl:pr-10",
         "2xl:left-[calc(50%-49.5rem)] 2xl:translate-x-20",
       )}
@@ -38,7 +38,7 @@ export function Header() {
           Skip to main content
         </a>
 
-        <div className="max-xl:flex max-xl:items-center max-xl:gap-x-4">
+        <div className="max-xl:flex max-xl:items-center max-xl:gap-x-3">
           <Button
             variant="ghost"
             size="icon-lg"

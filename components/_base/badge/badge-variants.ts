@@ -6,7 +6,7 @@ export const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-stone-300/50 dark:bg-stone-900 text-stone-500 dark:text-stone-400 [a]:hover:bg-stone-500/80 dark:[a]:hover:bg-stone-900/80",
+          "bg-stone-200/50 dark:bg-stone-900 text-stone-500 dark:text-stone-400 [a]:hover:bg-stone-500/80 dark:[a]:hover:bg-stone-900/80",
         secondary: "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
         destructive:
           "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",

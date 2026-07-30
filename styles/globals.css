@@ -57,8 +57,8 @@
 }
 
 :root {
-  --background: oklch(92.318% 0.00249 47.09); /* stone-200 */
-  --darker-background: oklch(86.866% 0.00423 55.608); /* stone-300 */
+  --background: oklch(97% 0.001 106.424); /* stone-100 */
+  --darker-background: oklch(92.318% 0.00249 47.09); /* stone-200 */
   --foreground: oklch(37.412% 0.00864 67.452); /* stone-700 */
 
   --nav-foreground: oklch(37.412% 0.00864 67.452); /* stone-700 */
