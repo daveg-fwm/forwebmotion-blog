@@ -58,8 +58,8 @@ export function Header() {
         <nav role="navigation" className="my-4 max-xl:mb-6">
           <ul className="text-nav-foreground max-xl:space-y-2">
             <li>
-              <Link href="#" variant="underline" className="inline-block py-1">
-                Posts
+              <Link href="/blog" variant="underline" className="inline-block py-1">
+                Blog
               </Link>
             </li>
             <li>

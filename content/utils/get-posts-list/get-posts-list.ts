@@ -26,7 +26,7 @@ export async function getPostsList(range?: GetPostsListProps) {
       ...metadata,
       description: `<p>${metadata.description}</p>`,
       date: format(date, "MMMM do, yyyy"),
-      slug: `/posts/${file.replace(/\.content.mdx$/, "")}`,
+      slug: `/blog/${file.replace(/\.content.mdx$/, "")}`,
     };
   });
 
