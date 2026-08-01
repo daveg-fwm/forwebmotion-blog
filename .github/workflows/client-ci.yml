@@ -1,9 +1,9 @@
 name: CI
-run-name: CI [${{ github.event_name }}]"
+run-name: "CI [${{ github.event_name }}]"
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
     branches:
       - main
   push:
