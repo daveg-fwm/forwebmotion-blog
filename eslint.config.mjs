@@ -8,7 +8,15 @@ import eslintReact from "@eslint-react/eslint-plugin";
 import * as mdx from "eslint-plugin-mdx";
 
 const eslintConfig = defineConfig([
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", ".intlayer/**"]),
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    ".intlayer/**",
+    ".agents/**",
+    ".github/**",
+  ]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
