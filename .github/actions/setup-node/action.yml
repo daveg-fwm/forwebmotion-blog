@@ -1,19 +1,27 @@
 name: Set up Node
 description: Install the repo-pinned Node and pnpm environment.
 
+inputs:
+  node-version:
+    description: Node.js version to install
+    required: true
+  pnpm-version:
+    description: pnpm version to install
+    required: true
+
 runs:
   using: composite
   steps:
     - name: Set up pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: ${{ env.PNPM_VERSION }}
+        version: ${{ inputs.pnpm-version }}
         run_install: false
 
     - name: Set up Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: ${{ inputs.node-version }}
         cache: pnpm
         cache-dependency-path: pnpm-lock.yaml
 

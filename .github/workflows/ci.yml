@@ -23,7 +23,7 @@ jobs:
       pnpm_version: ${{ steps.toolchain.outputs.pnpm_version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Resolve toolchain from package.json
         id: toolchain
@@ -39,7 +39,7 @@ jobs:
       PNPM_VERSION: ${{ needs.setup.outputs.pnpm_version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run quality gate
         uses: ./.github/actions/quality-gate
@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@9adf32b1121593767fc3c057af55b55db032dc04

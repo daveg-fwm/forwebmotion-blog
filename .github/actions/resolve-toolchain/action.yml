@@ -17,8 +17,10 @@ runs:
       run: |
         set -euo pipefail
 
-        node_version=$(jq -r '.engines.node // empty' package.json)
-        pnpm_version=$(jq -r '.packageManager // empty' package.json | cut -d'@' -f2)
+        package_json="${GITHUB_WORKSPACE}/package.json"
+
+        node_version=$(jq -r '.engines.node // empty' "${package_json}")
+        pnpm_version=$(jq -r '.packageManager // empty' "${package_json}" | sed -E 's/^[^@]+@//')
 
         if [[ -z "${node_version}" ]]; then
           echo "::error::No Node version found in package.json (engines.node)."

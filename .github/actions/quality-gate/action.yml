@@ -6,6 +6,9 @@ runs:
   steps:
     - name: Set up Node
       uses: ./.github/actions/setup-node
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        pnpm-version: ${{ env.PNPM_VERSION }}
 
     - name: Run quality checks
       shell: bash
