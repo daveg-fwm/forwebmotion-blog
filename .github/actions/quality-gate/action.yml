@@ -1,0 +1,24 @@
+name: Quality Gate
+description: Install dependencies and run the quality gate.
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      uses: ./.github/actions/setup-node
+
+    - name: Run quality checks
+      shell: bash
+      run: pnpm check-quality
+
+    - name: Summarize quality gate
+      if: always()
+      shell: bash
+      run: |
+        {
+          echo "### Quality"
+          echo ""
+          echo "- Node: \`${{ env.NODE_VERSION }}\`"
+          echo "- pnpm: \`${{ env.PNPM_VERSION }}\`"
+          echo "- Checks: ESLint, Prettier, TypeScript"
+        } >> "$GITHUB_STEP_SUMMARY"
