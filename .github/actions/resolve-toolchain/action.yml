@@ -1,0 +1,38 @@
+name: Resolve Toolchain
+description: Read pinned Node and pnpm versions from package.json.
+
+outputs:
+  node_version:
+    description: Node.js version from package.json.
+    value: ${{ steps.toolchain.outputs.node_version }}
+  pnpm_version:
+    description: pnpm version from package.json.
+    value: ${{ steps.toolchain.outputs.pnpm_version }}
+
+runs:
+  using: composite
+  steps:
+    - id: toolchain
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        package_json="${GITHUB_WORKSPACE}/package.json"
+
+        node_version=$(jq -r '.engines.node // empty' "${package_json}")
+        pnpm_version=$(jq -r '.packageManager // empty' "${package_json}" | sed -E 's/^[^@]+@//')
+
+        if [[ -z "${node_version}" ]]; then
+          echo "::error::No Node version found in package.json (engines.node)."
+          exit 1
+        fi
+
+        if [[ -z "${pnpm_version}" ]]; then
+          echo "::error::No pnpm version found in package.json (packageManager)."
+          exit 1
+        fi
+
+        {
+          echo "node_version=${node_version}"
+          echo "pnpm_version=${pnpm_version}"
+        } >> "$GITHUB_OUTPUT"
