@@ -20,7 +20,11 @@ export default async function Homepage() {
       </div>
 
       <section className="relative">
-        <Badge className="max-xl:mb-10 xl:absolute xl:-top-1.5 xl:-left-12.5 xl:-translate-x-full">
+        <Badge
+          render={
+            <h2 className="max-xl:mb-10 xl:absolute xl:-top-1.5 xl:-left-12.5 xl:-translate-x-full" />
+          }
+        >
           {content.postsBadge}
         </Badge>
 

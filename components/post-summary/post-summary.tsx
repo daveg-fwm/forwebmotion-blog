@@ -12,10 +12,8 @@ interface PostSummaryProps {
 export function PostSummary({ title, description, date, slug }: PostSummaryProps) {
   return (
     <article>
-      <Link href={`/blog/${slug}`}>
-        <h2 className="inline">
-          <MarkdownRenderer>{title}</MarkdownRenderer>
-        </h2>
+      <Link href={`/blog/${slug}`} className="text-xl">
+        <MarkdownRenderer>{title}</MarkdownRenderer>
       </Link>
       <MarkdownRenderer>{description}</MarkdownRenderer>
       <time className="mt-8 block text-sm font-medium" dateTime={date}>

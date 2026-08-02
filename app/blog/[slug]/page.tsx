@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getIntlayer } from "next-intlayer";
 import { MarkdownRenderer } from "next-intlayer/markdown";
 
 import { getPostBySlug, getPostsList } from "@/content/utils/get-posts/get-posts";
@@ -16,6 +17,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const content = getIntlayer("post-page");
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
@@ -25,16 +27,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="space-y-18">
-      <header>
-        <h1 className="text-hero-foreground light:font-bold text-5xl font-semibold">
+      <header className="text-hero-foreground light:font-bold space-y-6 font-semibold">
+        <h1 className="text-5xl">
           <MarkdownRenderer>{post.title}</MarkdownRenderer>
         </h1>
+
+        <div className="text-md flex flex-wrap gap-2">
+          <dl className="flex gap-x-1">
+            <dt className="text-stone-600 dark:text-stone-500">{content.published}</dt>
+            <dd>
+              <time dateTime={post.created}>{post.created}</time>.
+            </dd>
+          </dl>
+
+          {post.updated && (
+            <dl className="flex gap-x-1">
+              <dt className="text-stone-600 dark:text-stone-500">{content.updated}</dt>
+              <dd>
+                <time dateTime={post.updated}>{post.updated}</time>.
+              </dd>
+            </dl>
+          )}
+        </div>
       </header>
 
-      <div className="typeset space-y-8">
-        <time className="text-sm font-medium" dateTime={post.date}>
-          {post.date}
-        </time>
+      <div className="typeset">
         <MarkdownRenderer>{post.body}</MarkdownRenderer>
       </div>
     </article>

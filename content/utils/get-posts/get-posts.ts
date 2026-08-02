@@ -9,21 +9,30 @@ interface GetPostsListProps {
   end?: number;
 }
 
+function formatDate(date: string) {
+  const newDate = new Date(date);
+  return format(newDate, "MMMM do, yyyy");
+}
+
 function getPostFromFile(fileName: string, locale: string) {
   const filePath = path.join(process.cwd(), "content", locale, fileName);
   const content = fs.readFileSync(filePath, "utf-8");
 
   const metadata: PostMeta = getMarkdownMetadata(content);
-  const date = new Date(metadata.updated ?? metadata.created);
   // Strip the frontmatter block from the post body
   const body = content.replace(/^---\s*[\s\S]*?---\s*/, "").trim();
+  const date = metadata.updated ?? metadata.created;
+  const sortDate = new Date(date).getTime();
 
   return {
     ...metadata,
     body,
-    description: `<p>${metadata.description}</p>`,
-    date: format(date, "MMMM do, yyyy"),
     slug: fileName.replace(/\.content\.mdx$/, ""),
+    description: `<p>${metadata.description}</p>`,
+    sortDate,
+    date: formatDate(date),
+    created: formatDate(metadata.created),
+    ...(metadata.updated ? { updated: formatDate(metadata.updated) } : undefined),
   };
 }
 
@@ -34,12 +43,7 @@ export async function getPostsList(range?: GetPostsListProps) {
 
   const posts = files.map((file) => getPostFromFile(file, locale));
 
-  const sortedByMostRecent = posts.sort((a, b) => {
-    const dateA = new Date(a.updated ?? a.created);
-    const dateB = new Date(b.updated ?? b.created);
-
-    return dateB.getTime() - dateA.getTime();
-  });
+  const sortedByMostRecent = posts.toSorted((a, b) => b.sortDate - a.sortDate);
 
   const postsInRange = range
     ? sortedByMostRecent.slice(range.start, range.end)
