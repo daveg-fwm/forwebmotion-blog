@@ -1,5 +1,5 @@
 import { PostSummary } from "@/components/post-summary/post-summary";
-import { getPostsList } from "@/content/utils/get-posts-list/get-posts-list";
+import { getPostsList } from "@/content/utils/get-posts/get-posts";
 
 export default async function BlogPage() {
   const posts = await getPostsList();

@@ -12,8 +12,8 @@ import { cn } from "@/utils/_base/utils";
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const onMenuClick = () => {
-    setShowMenu((prevState) => !prevState);
+  const onMenuClick = (show?: boolean) => {
+    setShowMenu((prevState) => show ?? !prevState);
   };
 
   const MenuIcon = showMenu ? IconX : IconMenu2;
@@ -39,7 +39,7 @@ export function Header() {
         </a>
 
         <div className="max-xl:flex max-xl:items-center max-xl:justify-between">
-          <Link href="/" className="mb-0.5">
+          <Link href="/" className="mb-0.5" onClick={() => onMenuClick(false)}>
             <Image
               className="light:invert light:brightness-70"
               src="/images/forwebmotion-logo.svg"
@@ -50,7 +50,12 @@ export function Header() {
             />
           </Link>
 
-          <Button variant="ghost" size="icon-lg" className="xl:hidden" onClick={onMenuClick}>
+          <Button
+            variant="ghost"
+            size="icon-lg"
+            className="xl:hidden"
+            onClick={() => onMenuClick()}
+          >
             <MenuIcon className="size-5" />
           </Button>
         </div>
@@ -58,12 +63,22 @@ export function Header() {
         <nav role="navigation" className="my-4 max-xl:mb-6">
           <ul className="text-nav-foreground max-xl:space-y-2">
             <li>
-              <Link href="/blog" variant="underline" className="inline-block py-1">
+              <Link
+                href="/blog"
+                variant="underline"
+                className="inline-block py-1"
+                onClick={() => onMenuClick(false)}
+              >
                 Blog
               </Link>
             </li>
             <li>
-              <Link href="#" variant="underline" className="inline-block py-1">
+              <Link
+                href="#"
+                variant="underline"
+                className="inline-block py-1"
+                onClick={() => onMenuClick(false)}
+              >
                 About
               </Link>
             </li>

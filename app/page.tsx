@@ -3,11 +3,11 @@ import { getIntlayer } from "next-intlayer";
 import { Badge } from "@/components/_base/badge/badge";
 import { Link } from "@/components/_base/link/link";
 import { PostSummary } from "@/components/post-summary/post-summary";
-import { getPostsList } from "@/content/utils/get-posts-list/get-posts-list";
+import { getPostsList } from "@/content/utils/get-posts/get-posts";
 
 export default async function Homepage() {
   const content = getIntlayer("homepage");
-  const latestPosts = await getPostsList();
+  const latestPosts = await getPostsList({ end: 4 });
 
   return (
     <>

@@ -7,7 +7,7 @@ export function Footer() {
   const content = getIntlayer("footer");
 
   return (
-    <footer role="contentinfo" className="bg-darker-background pt-8.5 pb-23.5 xl:pb-8.5">
+    <footer role="contentinfo" className="bg-darker-background mt-auto pt-8.5 pb-23.5 xl:pb-8.5">
       <div className="mx-auto flex w-full max-w-196 items-center justify-between gap-x-6 px-4 2xl:max-w-206">
         <div className="flex flex-wrap items-baseline gap-x-2">
           <p className="text-xs font-semibold tracking-widest text-stone-900 dark:text-stone-200">

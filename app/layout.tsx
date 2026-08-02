@@ -56,7 +56,7 @@ export default async function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body>
+      <body className="flex min-h-full flex-col">
         <ContentProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />

@@ -12,7 +12,7 @@ interface PostSummaryProps {
 export function PostSummary({ title, description, date, slug }: PostSummaryProps) {
   return (
     <article>
-      <Link href={slug}>
+      <Link href={`/blog/${slug}`}>
         <h2 className="inline">
           <MarkdownRenderer>{title}</MarkdownRenderer>
         </h2>
