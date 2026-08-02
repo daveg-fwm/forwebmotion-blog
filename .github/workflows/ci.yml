@@ -48,6 +48,7 @@ jobs:
     name: Snyk Security Scan
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    needs: ["setup", "quality"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -57,4 +58,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor --all-projects
+          command: test --all-projects
