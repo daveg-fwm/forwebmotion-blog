@@ -36,7 +36,7 @@
     "scrollbarSlider.hoverBackground": "#161F267e",
     "badge.background": "#8AE773",
     "progressBar.background": "#8AE773",
-    "editor.background": "#FFF",
+    "editor.background": "#fafaf9",
     "editor.foreground": "#000",
     "editor.lineHighlightBackground": "#EEEEEE",
     "editor.wordHighlightStrongBackground": "#EEEEEE",
@@ -84,7 +84,7 @@
     "sideBarSectionHeader.background": "#161F26",
     "debugToolBar.background": "#161F26",
     "tab.border": "#F3F3F3",
-    "tab.activeBackground": "#FFF",
+    "tab.activeBackground": "#fafaf9",
     "tab.inactiveForeground": "#686868",
     "tab.inactiveBackground": "#F3F3F3",
     "tab.activeForeground": "#000",
@@ -313,7 +313,7 @@
       "scope": "entity.name.function",
       "settings": {
         "fontStyle": "",
-        "foreground": "#7eb233"
+        "foreground": "#33B258"
       }
     },
     {

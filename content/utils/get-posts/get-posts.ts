@@ -14,8 +14,12 @@ function formatDate(date: string) {
   return format(newDate, "MMMM do, yyyy");
 }
 
+function getPostsFolder(locale: string) {
+  return path.join(process.cwd(), "content", locale, "posts");
+}
+
 function getPostFromFile(fileName: string, locale: string) {
-  const filePath = path.join(process.cwd(), "content", locale, fileName);
+  const filePath = getPostsFolder(locale) + `/${fileName}`;
   const content = fs.readFileSync(filePath, "utf-8");
 
   const metadata: PostMeta = getMarkdownMetadata(content);
@@ -38,7 +42,7 @@ function getPostFromFile(fileName: string, locale: string) {
 
 export async function getPostsList(range?: GetPostsListProps) {
   const locale = await getLocale();
-  const postsDir = path.join(process.cwd(), "content", locale);
+  const postsDir = getPostsFolder(locale);
   const files = fs.readdirSync(postsDir).filter((file) => file.endsWith(".mdx"));
 
   const posts = files.map((file) => getPostFromFile(file, locale));
@@ -55,7 +59,7 @@ export async function getPostsList(range?: GetPostsListProps) {
 export async function getPostBySlug(slug: string) {
   const locale = await getLocale();
   const fileName = `${slug}.content.mdx`;
-  const filePath = path.join(process.cwd(), "content", locale, fileName);
+  const filePath = getPostsFolder(locale) + `/${fileName}`;
 
   if (!fs.existsSync(filePath)) {
     return null;

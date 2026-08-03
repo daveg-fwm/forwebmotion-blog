@@ -9,7 +9,6 @@ import { getLocale } from "next-intlayer/server";
 import { Footer } from "@/components/_layout/footer/footer";
 import { Header } from "@/components/_layout/header/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { ContentProvider } from "@/content/content-provider/content-provider";
 import { cn } from "@/utils/_base/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -57,19 +56,17 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        <ContentProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header />
-            <main
-              className="mx-auto w-full max-w-196 px-4 pt-18 pb-26 xl:py-39 2xl:max-w-206"
-              id="main-content"
-              role="main"
-            >
-              {children}
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </ContentProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          <main
+            className="mx-auto w-full max-w-196 px-4 pt-18 pb-26 xl:py-39 2xl:max-w-206"
+            id="main-content"
+            role="main"
+          >
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
