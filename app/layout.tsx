@@ -49,7 +49,7 @@ export default async function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        "scrollbar-thin scrollbar-thumb-stone-500 scrollbar-track-stone-800",
+        "scrollbar-thin scrollbar-thumb-stone-400 scrollbar-track-stone-600",
         "font-sans",
         inter.variable,
       )}
