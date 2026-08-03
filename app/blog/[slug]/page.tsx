@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getIntlayer } from "next-intlayer";
 import { MarkdownRenderer } from "next-intlayer/markdown";
 
+import { PostMarkdown } from "@/components/post-markdown/post-markdown";
 import { getPostBySlug, getPostsList } from "@/content/utils/get-posts/get-posts";
 
 interface BlogPostPageProps {
@@ -52,7 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       <div className="typeset">
-        <MarkdownRenderer>{post.body}</MarkdownRenderer>
+        <PostMarkdown>{post.body}</PostMarkdown>
       </div>
     </article>
   );

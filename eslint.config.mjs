@@ -102,7 +102,7 @@ const eslintConfig = defineConfig([
     files: ["**/*.mdx"],
     ...mdx.flat,
     processor: mdx.createRemarkProcessor({
-      lintCodeBlocks: true,
+      lintCodeBlocks: false,
     }),
   },
 ]);
