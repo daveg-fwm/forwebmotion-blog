@@ -7,7 +7,7 @@ minimumReleaseAgeStrict: true
 overrides:
   typescript: "6.0.3"
   uuid: "14.0.1"
-  "@hono/node-server": "2.0.10"
+  "@hono/node-server": "2.1.0"
   glob: "13.0.6"
   "brace-expansion@5": "5.0.9"
   "js-yaml": "5.2.2"
