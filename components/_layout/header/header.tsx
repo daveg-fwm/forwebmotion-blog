@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/_base/button/button";
 import { Link } from "@/components/_base/link/link";
-import { ToggleTheme } from "@/components/theme/toggle-theme";
+import { ToggleTheme } from "@/components/_layout/theme/toggle-theme";
 import { cn } from "@/utils/_base/utils";
 
 export function Header() {

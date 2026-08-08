@@ -8,7 +8,7 @@ import { getLocale } from "next-intlayer/server";
 
 import { Footer } from "@/components/_layout/footer/footer";
 import { Header } from "@/components/_layout/header/header";
-import { ThemeProvider } from "@/components/theme/theme-provider";
+import { ThemeProvider } from "@/components/_layout/theme/theme-provider";
 import { cn } from "@/utils/_base/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
