@@ -27,6 +27,8 @@ async function loadInterFonts() {
   return { regular, semiBold };
 }
 
+export const dynamic = "force-static";
+
 export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
