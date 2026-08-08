@@ -32,7 +32,6 @@ function getPostFromFile(fileName: string, locale: string) {
     ...metadata,
     body,
     slug: fileName.replace(/\.content\.mdx$/, ""),
-    description: `<p>${metadata.description}</p>`,
     sortDate,
     date: formatDate(date),
     created: formatDate(metadata.created),

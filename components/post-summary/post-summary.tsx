@@ -15,7 +15,9 @@ export function PostSummary({ title, description, date, slug }: PostSummaryProps
       <Link href={`/blog/${slug}`} className="text-xl">
         <MarkdownRenderer>{title}</MarkdownRenderer>
       </Link>
-      <MarkdownRenderer>{description}</MarkdownRenderer>
+      <p>
+        <MarkdownRenderer>{description}</MarkdownRenderer>
+      </p>
       <time className="mt-8 block text-sm font-medium" dateTime={date}>
         {date}
       </time>
