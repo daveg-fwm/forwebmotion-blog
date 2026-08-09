@@ -19,8 +19,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       template: "%s | Forwebmotion",
       default: "Forwebmotion",
     },
-    // description,
-    // keywords,
+    metadataBase: new URL("https://forwebmotion.com"),
   };
 };
 

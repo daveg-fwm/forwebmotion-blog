@@ -1,43 +1,20 @@
+import { getIntlayer } from "intlayer";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getIntlayer } from "next-intlayer";
 import { MarkdownRenderer } from "next-intlayer/markdown";
 
 import { PostMarkdown } from "@/components/post-markdown/post-markdown";
 import { getPostBySlug, getPostsList } from "@/content/utils/get-posts/get-posts";
+import {
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_TYPE,
+  OG_IMAGE_WIDTH,
+} from "@/utils/opengraph-image/opengraph-image";
 
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;
   }>;
-}
-
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
-    return {};
-  }
-
-  return {
-    title: post.title,
-    description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      images: [
-        {
-          url: `/blog/${slug}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          type: "image/png",
-          alt: post.title,
-        },
-      ],
-    },
-  };
 }
 
 export async function generateStaticParams() {
@@ -86,4 +63,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
     </article>
   );
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      siteName: "Forwebmotion",
+      url: `/blog/${slug}`,
+      title: post.title,
+      description: post.description,
+      type: "article",
+      images: [
+        {
+          url: `/blog/${slug}/opengraph-image`,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
+          type: OG_IMAGE_TYPE,
+          alt: post.title,
+        },
+      ],
+    },
+  };
 }

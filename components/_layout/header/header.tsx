@@ -32,7 +32,7 @@ export function Header() {
     >
       <div className="mx-auto w-full max-w-188">
         <a
-          className="sr-only font-medium text-stone-300 focus:not-sr-only focus:absolute focus:-top-20 focus:p-2"
+          className="text-nav-foreground sr-only font-medium focus:not-sr-only focus:absolute focus:-top-20 focus:p-2"
           href="#main-content"
         >
           Skip to main content

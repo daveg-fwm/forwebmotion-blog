@@ -1,24 +1,12 @@
 import { getIntlayer } from "intlayer";
-import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
-import { getPostBySlug } from "@/content/utils/get-posts/get-posts";
 import { fonts, LOGO_HEIGHT, LOGO_WIDTH, logoSrc } from "@/utils/opengraph-image/opengraph-image";
-
-interface OpenGraphImageProps {
-  params: Promise<{ slug: string }>;
-}
 
 export const dynamic = "force-static";
 
-export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
+export default async function OpenGraphImage() {
   const content = getIntlayer("opengraph-image");
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
-    notFound();
-  }
 
   return new ImageResponse(
     <div
@@ -51,7 +39,7 @@ export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
             letterSpacing: "-0.02em",
           }}
         >
-          {post.title}
+          {content.blog}
         </div>
         <div
           style={{

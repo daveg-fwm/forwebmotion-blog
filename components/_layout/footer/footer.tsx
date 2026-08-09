@@ -1,5 +1,5 @@
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
-import { getIntlayer } from "next-intlayer";
+import { getIntlayer } from "intlayer";
 
 import { Link } from "@/components/_base/link/link";
 

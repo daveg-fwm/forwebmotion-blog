@@ -6,6 +6,9 @@ const blogPageContent = {
     heading: t({
       en: "Blog",
     }),
+    description: t({
+      en: "Personal frontend engineering blog by Dave Green.",
+    }),
   },
 } satisfies Dictionary;
 
