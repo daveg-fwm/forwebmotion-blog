@@ -9,6 +9,12 @@ const footerContent = {
     slogan: t({
       en: "exploring the art of frontend",
     }),
+    github: t({
+      en: "Dave's GitHub profile (opens in a new tab)",
+    }),
+    linkedin: t({
+      en: "Dave's LinkedIn profile (opens in a new tab)",
+    }),
   },
 } satisfies Dictionary;
 

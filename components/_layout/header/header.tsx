@@ -2,6 +2,7 @@
 
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import { useIntlayer } from "next-intlayer";
 import { useState } from "react";
 
 import { Button } from "@/components/_base/button/button";
@@ -10,6 +11,7 @@ import { ToggleTheme } from "@/components/_layout/theme/toggle-theme";
 import { cn } from "@/utils/_base/utils";
 
 export function Header() {
+  const content = useIntlayer("header");
   const [showMenu, setShowMenu] = useState(false);
 
   const onMenuClick = (show?: boolean) => {
@@ -35,7 +37,7 @@ export function Header() {
           className="text-nav-foreground sr-only font-medium focus:not-sr-only focus:absolute focus:-top-20 focus:p-2"
           href="#main-content"
         >
-          Skip to main content
+          {content.skipLink}
         </a>
 
         <div className="max-xl:flex max-xl:items-center max-xl:justify-between">
@@ -55,8 +57,10 @@ export function Header() {
             size="icon-lg"
             className="xl:hidden"
             onClick={() => onMenuClick()}
+            aria-expanded={showMenu}
           >
-            <MenuIcon className="size-5" />
+            <MenuIcon className="size-5" aria-hidden="true" />
+            <span className="sr-only">{content.menuButton}</span>
           </Button>
         </div>
 

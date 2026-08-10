@@ -24,8 +24,9 @@ export function Footer() {
             href="https://github.com/daveg-fwm/"
             target="_blank"
             rel="noopener"
+            aria-label={content.github}
           >
-            <IconBrandGithub className="size-6" />
+            <IconBrandGithub className="size-6" aria-hidden="true" />
           </Link>
           <Link
             as="a"
@@ -33,8 +34,9 @@ export function Footer() {
             href="https://www.linkedin.com/in/daveg-fwm/"
             target="_blank"
             rel="noopener"
+            aria-label={content.linkedin}
           >
-            <IconBrandLinkedin className="size-6" />
+            <IconBrandLinkedin className="size-6" aria-hidden="true" />
           </Link>
         </div>
       </div>
