@@ -21,6 +21,18 @@ export const generateMetadata = async (): Promise<Metadata> => {
       default: SITE_NAME,
     },
     metadataBase: new URL(SITE_URL),
+    icons: {
+      icon: [
+        { url: "/icons/forwebmotion/favicon.ico", sizes: "256x256", type: "image/x-icon" },
+        { url: "/icons/forwebmotion/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/icons/forwebmotion/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/icons/forwebmotion/icon.svg", type: "image/svg+xml" },
+      ],
+      apple: [
+        { url: "/icons/forwebmotion/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
+    manifest: "/site.webmanifest",
   };
 };
 
