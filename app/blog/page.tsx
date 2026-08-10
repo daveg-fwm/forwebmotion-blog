@@ -7,41 +7,6 @@ import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_NAME } from "@/con
 import { getPostsList } from "@/content/utils/get-posts/get-posts";
 import { getBlogJsonLd } from "@/utils/json-ld/json-ld";
 
-export default async function BlogPage() {
-  const content = getIntlayer("blog-page");
-  const posts = await getPostsList();
-
-  return (
-    <>
-      <JsonLd
-        data={getBlogJsonLd({
-          name: content.heading,
-          description: content.description,
-          posts,
-        })}
-      />
-
-      <div className="space-y-18">
-        <h1 className="text-hero-foreground light:font-bold text-5xl font-semibold">
-          {content.heading}
-        </h1>
-
-        <div className="typeset space-y-15">
-          {posts.map(({ slug, title, description, date }) => (
-            <PostSummary
-              key={slug}
-              slug={slug}
-              title={title}
-              description={description}
-              date={date}
-            />
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
-
 export async function generateMetadata(): Promise<Metadata> {
   const content = getIntlayer("blog-page");
 
@@ -65,4 +30,39 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
     },
   };
+}
+
+export default async function BlogPage() {
+  const content = getIntlayer("blog-page");
+  const posts = await getPostsList();
+
+  return (
+    <>
+      <JsonLd
+        data={getBlogJsonLd({
+          name: content.heading,
+          description: content.description,
+          posts,
+        })}
+      />
+
+      <div className="space-y-18">
+        <h1 className="text-hero-foreground light:font-bold text-5xl font-semibold">
+          {content.heading}
+        </h1>
+
+        <div className="typeset space-y-15">
+          {posts.map(({ slug, title, description, publishedAt, modifiedAt }) => (
+            <PostSummary
+              key={slug}
+              slug={slug}
+              title={title}
+              description={description}
+              date={modifiedAt ?? publishedAt}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }

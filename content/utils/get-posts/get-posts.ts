@@ -1,17 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { format } from "date-fns";
 import { getLocale, getMarkdownMetadata } from "intlayer";
 
 interface GetPostsListProps {
   start?: number;
   end?: number;
-}
-
-function formatDate(date: string) {
-  const newDate = new Date(date);
-  return format(newDate, "MMMM do, yyyy");
 }
 
 function getPostsFolder(locale: string) {
@@ -22,23 +16,20 @@ function getPostFromFile(fileName: string, locale: string) {
   const filePath = getPostsFolder(locale) + `/${fileName}`;
   const content = fs.readFileSync(filePath, "utf-8");
 
-  const metadata: PostMeta = getMarkdownMetadata(content);
+  const { title, description, publishedAt, modifiedAt }: PostMeta = getMarkdownMetadata(content);
   // Strip the frontmatter block from the post body
   const body = content.replace(/^---\s*[\s\S]*?---\s*/, "").trim();
-  const date = metadata.updated ?? metadata.created;
+  const date = modifiedAt ?? publishedAt;
   const sortDate = new Date(date).getTime();
 
   return {
-    ...metadata,
-    body,
+    title,
+    description,
     slug: fileName.replace(/\.content\.mdx$/, ""),
+    body,
     sortDate,
-    date: formatDate(date),
-    publishedAt: metadata.created,
-    created: formatDate(metadata.created),
-    ...(metadata.updated
-      ? { updated: formatDate(metadata.updated), modifiedAt: metadata.updated }
-      : undefined),
+    publishedAt,
+    ...(modifiedAt ? { modifiedAt } : undefined),
   };
 }
 

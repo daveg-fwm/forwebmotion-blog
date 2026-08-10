@@ -7,12 +7,43 @@ import { JsonLd } from "@/components/json-ld/json-ld";
 import { PostMarkdown } from "@/components/post-markdown/post-markdown";
 import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_NAME } from "@/constants/constants";
 import { getPostBySlug, getPostsList } from "@/content/utils/get-posts/get-posts";
+import { formatPostDate } from "@/utils/format-post-date/format-post-date";
 import { getBlogPostJsonLd } from "@/utils/json-ld/json-ld";
 
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      siteName: SITE_NAME,
+      url: `/blog/${slug}`,
+      title: post.title,
+      description: post.description,
+      type: "article",
+      images: [
+        {
+          url: `/blog/${slug}/opengraph-image`,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
+          type: OG_IMAGE_TYPE,
+          alt: post.title,
+        },
+      ],
+    },
+  };
 }
 
 export async function generateStaticParams() {
@@ -44,15 +75,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <dl className="flex gap-x-1">
               <dt className="text-stone-600 dark:text-stone-500">{content.published}</dt>
               <dd>
-                <time dateTime={post.created}>{post.created}</time>.
+                <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>.
               </dd>
             </dl>
 
-            {post.updated && (
+            {post.modifiedAt && (
               <dl className="flex gap-x-1">
                 <dt className="text-stone-600 dark:text-stone-500">{content.updated}</dt>
                 <dd>
-                  <time dateTime={post.updated}>{post.updated}</time>.
+                  <time dateTime={post.modifiedAt}>{formatPostDate(post.modifiedAt)}</time>.
                 </dd>
               </dl>
             )}
@@ -65,34 +96,4 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </article>
     </>
   );
-}
-
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
-    return {};
-  }
-
-  return {
-    title: post.title,
-    description: post.description,
-    openGraph: {
-      siteName: SITE_NAME,
-      url: `/blog/${slug}`,
-      title: post.title,
-      description: post.description,
-      type: "article",
-      images: [
-        {
-          url: `/blog/${slug}/opengraph-image`,
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          type: OG_IMAGE_TYPE,
-          alt: post.title,
-        },
-      ],
-    },
-  };
 }

@@ -63,15 +63,17 @@ export default async function Homepage() {
         </Badge>
 
         <div className="typeset space-y-15">
-          {Object.values(latestPosts).map(({ slug, title, description, date }) => (
-            <PostSummary
-              key={slug}
-              slug={slug}
-              title={title}
-              description={description}
-              date={date}
-            />
-          ))}
+          {Object.values(latestPosts).map(
+            ({ slug, title, description, publishedAt, modifiedAt }) => (
+              <PostSummary
+                key={slug}
+                slug={slug}
+                title={title}
+                description={description}
+                date={modifiedAt ?? publishedAt}
+              />
+            ),
+          )}
         </div>
 
         <Link className="mt-20" href="/blog" variant="icon">
