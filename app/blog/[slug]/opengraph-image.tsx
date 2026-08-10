@@ -2,8 +2,9 @@ import { getIntlayer } from "intlayer";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
+import { OG_LOGO_HEIGHT, OG_LOGO_WIDTH } from "@/constants/constants";
 import { getPostBySlug } from "@/content/utils/get-posts/get-posts";
-import { fonts, LOGO_HEIGHT, LOGO_WIDTH, logoSrc } from "@/utils/opengraph-image/opengraph-image";
+import { fonts, logoSrc } from "@/utils/opengraph-image/opengraph-image";
 
 interface OpenGraphImageProps {
   params: Promise<{ slug: string }>;
@@ -77,7 +78,7 @@ export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
               color: "#78716c",
             }}
           >
-            <img src={logoSrc} height={LOGO_HEIGHT} width={LOGO_WIDTH} alt="" />
+            <img src={logoSrc} height={OG_LOGO_HEIGHT} width={OG_LOGO_WIDTH} alt="" />
             <span style={{ lineHeight: 1.5 }}>
               {content.author.by} {content.author.name}
             </span>

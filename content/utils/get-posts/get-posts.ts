@@ -34,8 +34,11 @@ function getPostFromFile(fileName: string, locale: string) {
     slug: fileName.replace(/\.content\.mdx$/, ""),
     sortDate,
     date: formatDate(date),
+    publishedAt: metadata.created,
     created: formatDate(metadata.created),
-    ...(metadata.updated ? { updated: formatDate(metadata.updated) } : undefined),
+    ...(metadata.updated
+      ? { updated: formatDate(metadata.updated), modifiedAt: metadata.updated }
+      : undefined),
   };
 }
 

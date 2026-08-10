@@ -1,30 +1,44 @@
 import { getIntlayer } from "intlayer";
 import type { Metadata } from "next";
 
+import { JsonLd } from "@/components/json-ld/json-ld";
 import { PostSummary } from "@/components/post-summary/post-summary";
+import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_NAME } from "@/constants/constants";
 import { getPostsList } from "@/content/utils/get-posts/get-posts";
-import {
-  OG_IMAGE_HEIGHT,
-  OG_IMAGE_TYPE,
-  OG_IMAGE_WIDTH,
-} from "@/utils/opengraph-image/opengraph-image";
+import { getBlogJsonLd } from "@/utils/json-ld/json-ld";
 
 export default async function BlogPage() {
   const content = getIntlayer("blog-page");
   const posts = await getPostsList();
 
   return (
-    <div className="space-y-18">
-      <h1 className="text-hero-foreground light:font-bold text-5xl font-semibold">
-        {content.heading}
-      </h1>
+    <>
+      <JsonLd
+        data={getBlogJsonLd({
+          name: content.heading,
+          description: content.description,
+          posts,
+        })}
+      />
 
-      <div className="typeset space-y-15">
-        {posts.map(({ slug, title, description, date }) => (
-          <PostSummary key={slug} slug={slug} title={title} description={description} date={date} />
-        ))}
+      <div className="space-y-18">
+        <h1 className="text-hero-foreground light:font-bold text-5xl font-semibold">
+          {content.heading}
+        </h1>
+
+        <div className="typeset space-y-15">
+          {posts.map(({ slug, title, description, date }) => (
+            <PostSummary
+              key={slug}
+              slug={slug}
+              title={title}
+              description={description}
+              date={date}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -35,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content.heading,
     description: content.description,
     openGraph: {
-      siteName: "Forwebmotion",
+      siteName: SITE_NAME,
       url: "/blog",
       title: content.heading,
       description: content.description,

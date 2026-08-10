@@ -39,10 +39,4 @@ const fonts = [
   },
 ];
 
-const LOGO_WIDTH = 153;
-const LOGO_HEIGHT = 20;
-const OG_IMAGE_WIDTH = 1200;
-const OG_IMAGE_HEIGHT = 630;
-const OG_IMAGE_TYPE = "image/png";
-
-export { fonts, LOGO_HEIGHT, LOGO_WIDTH, logoSrc, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH };
+export { fonts, logoSrc };

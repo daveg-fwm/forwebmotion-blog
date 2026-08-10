@@ -3,13 +3,34 @@ import type { Metadata } from "next";
 
 import { Badge } from "@/components/_base/badge/badge";
 import { Link } from "@/components/_base/link/link";
+import { JsonLd } from "@/components/json-ld/json-ld";
 import { PostSummary } from "@/components/post-summary/post-summary";
+import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_NAME } from "@/constants/constants";
 import { getPostsList } from "@/content/utils/get-posts/get-posts";
-import {
-  OG_IMAGE_HEIGHT,
-  OG_IMAGE_TYPE,
-  OG_IMAGE_WIDTH,
-} from "@/utils/opengraph-image/opengraph-image";
+import { getHomepageJsonLd } from "@/utils/json-ld/json-ld";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = getIntlayer("homepage");
+
+  return {
+    description: content.heading,
+    openGraph: {
+      siteName: SITE_NAME,
+      url: "/",
+      description: content.heading,
+      type: "website",
+      images: [
+        {
+          url: `/opengraph-image`,
+          width: OG_IMAGE_WIDTH,
+          height: OG_IMAGE_HEIGHT,
+          type: OG_IMAGE_TYPE,
+          alt: content.heading,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Homepage() {
   const content = getIntlayer("homepage");
@@ -17,6 +38,13 @@ export default async function Homepage() {
 
   return (
     <>
+      <JsonLd
+        data={getHomepageJsonLd({
+          description: content.heading,
+          posts: latestPosts,
+        })}
+      />
+
       <div className="text-hero-foreground mb-18 space-y-7">
         <h1 className="sr-only">{content.heading}</h1>
         <p className="light:font-bold text-5xl font-semibold">{content.name}</p>
@@ -52,27 +80,4 @@ export default async function Homepage() {
       </section>
     </>
   );
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const content = getIntlayer("homepage");
-
-  return {
-    description: content.heading,
-    openGraph: {
-      siteName: "Forwebmotion",
-      url: "/",
-      description: content.heading,
-      type: "website",
-      images: [
-        {
-          url: `/opengraph-image`,
-          width: OG_IMAGE_WIDTH,
-          height: OG_IMAGE_HEIGHT,
-          type: OG_IMAGE_TYPE,
-          alt: content.heading,
-        },
-      ],
-    },
-  };
 }

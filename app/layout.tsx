@@ -9,6 +9,7 @@ import { getLocale } from "next-intlayer/server";
 import { Footer } from "@/components/_layout/footer/footer";
 import { Header } from "@/components/_layout/header/header";
 import { ThemeProvider } from "@/components/_layout/theme/theme-provider";
+import { SITE_NAME, SITE_URL } from "@/constants/constants";
 import { cn } from "@/utils/_base/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -16,10 +17,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: {
-      template: "%s | Forwebmotion",
-      default: "Forwebmotion",
+      template: `%s | ${SITE_NAME}`,
+      default: SITE_NAME,
     },
-    metadataBase: new URL("https://forwebmotion.com"),
+    metadataBase: new URL(SITE_URL),
   };
 };
 

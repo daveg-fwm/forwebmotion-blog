@@ -3,13 +3,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MarkdownRenderer } from "next-intlayer/markdown";
 
+import { JsonLd } from "@/components/json-ld/json-ld";
 import { PostMarkdown } from "@/components/post-markdown/post-markdown";
+import { OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH, SITE_NAME } from "@/constants/constants";
 import { getPostBySlug, getPostsList } from "@/content/utils/get-posts/get-posts";
-import {
-  OG_IMAGE_HEIGHT,
-  OG_IMAGE_TYPE,
-  OG_IMAGE_WIDTH,
-} from "@/utils/opengraph-image/opengraph-image";
+import { getBlogPostJsonLd } from "@/utils/json-ld/json-ld";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -33,35 +31,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="space-y-18">
-      <header className="text-hero-foreground light:font-bold space-y-6 font-semibold">
-        <h1 className="text-5xl">
-          <MarkdownRenderer>{post.title}</MarkdownRenderer>
-        </h1>
+    <>
+      <JsonLd data={getBlogPostJsonLd(post)} />
 
-        <div className="text-md flex flex-wrap gap-2">
-          <dl className="flex gap-x-1">
-            <dt className="text-stone-600 dark:text-stone-500">{content.published}</dt>
-            <dd>
-              <time dateTime={post.created}>{post.created}</time>.
-            </dd>
-          </dl>
+      <article className="space-y-18">
+        <header className="text-hero-foreground light:font-bold space-y-6 font-semibold">
+          <h1 className="text-5xl">
+            <MarkdownRenderer>{post.title}</MarkdownRenderer>
+          </h1>
 
-          {post.updated && (
+          <div className="text-md flex flex-wrap gap-2">
             <dl className="flex gap-x-1">
-              <dt className="text-stone-600 dark:text-stone-500">{content.updated}</dt>
+              <dt className="text-stone-600 dark:text-stone-500">{content.published}</dt>
               <dd>
-                <time dateTime={post.updated}>{post.updated}</time>.
+                <time dateTime={post.created}>{post.created}</time>.
               </dd>
             </dl>
-          )}
-        </div>
-      </header>
 
-      <div className="typeset">
-        <PostMarkdown>{post.body}</PostMarkdown>
-      </div>
-    </article>
+            {post.updated && (
+              <dl className="flex gap-x-1">
+                <dt className="text-stone-600 dark:text-stone-500">{content.updated}</dt>
+                <dd>
+                  <time dateTime={post.updated}>{post.updated}</time>.
+                </dd>
+              </dl>
+            )}
+          </div>
+        </header>
+
+        <div className="typeset">
+          <PostMarkdown>{post.body}</PostMarkdown>
+        </div>
+      </article>
+    </>
   );
 }
 
@@ -77,7 +79,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     title: post.title,
     description: post.description,
     openGraph: {
-      siteName: "Forwebmotion",
+      siteName: SITE_NAME,
       url: `/blog/${slug}`,
       title: post.title,
       description: post.description,
