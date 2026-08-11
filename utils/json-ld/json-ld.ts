@@ -2,6 +2,7 @@ import { formatISO, parseISO } from "date-fns";
 import type { Blog, BlogPosting, Graph, Person, WithContext } from "schema-dts";
 
 import { SITE_NAME, SITE_URL } from "@/constants/constants";
+import { absoluteUrl } from "@/utils/absolute-url/absolute-url";
 
 interface PostJsonLdData {
   slug: string;
@@ -17,10 +18,6 @@ const author: Person = {
   url: SITE_URL,
   sameAs: ["https://github.com/daveg-fwm/", "https://www.linkedin.com/in/daveg-fwm/"],
 };
-
-function absoluteUrl(path: string) {
-  return new URL(path, SITE_URL).href;
-}
 
 function toIsoDateTime(date: string) {
   return formatISO(parseISO(date));

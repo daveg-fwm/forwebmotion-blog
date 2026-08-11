@@ -1,6 +1,8 @@
 {
   "name": "Forwebmotion",
   "short_name": "Forwebmotion",
+  "description": "Personal frontend engineering blog by Dave Green.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/icons/forwebmotion/icon-192.png",

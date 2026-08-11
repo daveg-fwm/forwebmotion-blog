@@ -33,6 +33,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       ],
     },
     manifest: "/site.webmanifest",
+    robots: "/robots.txt",
   };
 };
 
