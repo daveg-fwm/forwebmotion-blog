@@ -6,6 +6,14 @@ const headerContent = {
     skipLink: t({
       en: "Skip to main content",
     }),
+    navLinks: [
+      t({
+        en: "Blog",
+      }),
+      t({
+        en: "About",
+      }),
+    ],
     menuButton: t({
       en: "Toggle main menu",
     }),

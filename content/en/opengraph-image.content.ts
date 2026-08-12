@@ -14,6 +14,9 @@ const opengraphImageContent = {
     blog: t({
       en: "Personal frontend engineering blog",
     }),
+    about: t({
+      en: "About",
+    }),
   },
 } satisfies Dictionary;
 

@@ -2,6 +2,7 @@
 
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useIntlayer } from "next-intlayer";
 import { useState } from "react";
 
@@ -13,6 +14,7 @@ import { cn } from "@/utils/_base/utils";
 export function Header() {
   const content = useIntlayer("header");
   const [showMenu, setShowMenu] = useState(false);
+  const pathname = usePathname();
 
   const onMenuClick = (show?: boolean) => {
     setShowMenu((prevState) => show ?? !prevState);
@@ -25,7 +27,6 @@ export function Header() {
       className={cn(
         "fixed left-0 z-10",
         "max-xl:bg-darker-background/99 max-xl:light:border-stone-50 max-xl:bottom-0 max-xl:w-full max-xl:overflow-clip max-xl:border-t max-xl:px-4 max-xl:py-2",
-        "max-xl:transition-[height] max-xl:transition-discrete",
         showMenu ? "max-xl:h-auto max-xl:pt-4 max-xl:pb-10" : "max-xl:h-15",
         "xl:top-43.5 xl:left-16 xl:pr-10",
         "2xl:left-[calc(50%-49.5rem)] 2xl:translate-x-20",
@@ -58,34 +59,33 @@ export function Header() {
             className="xl:hidden"
             onClick={() => onMenuClick()}
             aria-expanded={showMenu}
+            aria-controls="main-navigation"
           >
             <MenuIcon className="size-5" aria-hidden="true" />
             <span className="sr-only">{content.menuButton}</span>
           </Button>
         </div>
 
-        <nav role="navigation" className="my-4 max-xl:mb-6">
+        <nav id="main-navigation" role="navigation" className="my-4 max-xl:mb-6">
           <ul className="text-nav-foreground max-xl:space-y-2">
-            <li>
-              <Link
-                href="/blog"
-                variant="underline"
-                className="inline-block py-1"
-                onClick={() => onMenuClick(false)}
-              >
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                variant="underline"
-                className="inline-block py-1"
-                onClick={() => onMenuClick(false)}
-              >
-                About
-              </Link>
-            </li>
+            {content.navLinks.map((label) => {
+              const href = `/${label.toLocaleLowerCase()}`;
+              const isActive = pathname === href;
+
+              return (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    aria-current={isActive ? "page" : undefined}
+                    variant="underline"
+                    className={cn("inline-block py-1", isActive && "text-stone-500")}
+                    onClick={() => onMenuClick(false)}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

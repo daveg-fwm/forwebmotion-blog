@@ -88,7 +88,7 @@
     "tab.inactiveForeground": "#686868",
     "tab.inactiveBackground": "#F3F3F3",
     "tab.activeForeground": "#000",
-    "editorGroupHeader.tabsBackground": "#e7e5e4ff",
+    "editorGroupHeader.tabsBackground": "#e7e5e450",
     "statusBar.foreground": "#FFF",
     "statusBar.background": "#5899C5",
     "statusBar.debuggingBackground": "#8AE773",

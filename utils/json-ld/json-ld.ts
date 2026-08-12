@@ -1,5 +1,5 @@
 import { formatISO, parseISO } from "date-fns";
-import type { Blog, BlogPosting, Graph, Person, WithContext } from "schema-dts";
+import type { Blog, BlogPosting, Graph, Person, WebSite, WithContext } from "schema-dts";
 
 import { SITE_NAME, SITE_URL } from "@/constants/constants";
 import { absoluteUrl } from "@/utils/absolute-url/absolute-url";
@@ -59,6 +59,23 @@ export function getHomepageJsonLd({
         })),
       },
     ],
+  };
+}
+
+export function getAboutJsonLd({
+  name,
+  description,
+}: {
+  name: string;
+  description: string;
+}): WithContext<WebSite> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name,
+    description,
+    url: absoluteUrl("/about"),
+    author,
   };
 }
 

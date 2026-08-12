@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `/blog/opengraph-image`,
+          url: "/blog/opengraph-image",
           width: OG_IMAGE_WIDTH,
           height: OG_IMAGE_HEIGHT,
           type: OG_IMAGE_TYPE,
