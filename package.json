@@ -13,8 +13,7 @@
     "lint:check": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
     "format": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --write",
     "format:check": "prettier \"**/*.+(ts|tsx|js|jsx|mdx|md|json|css)\" --check",
-    "types": "tsc",
-    "types:check": "tsc --noEmit",
+    "types:check": "intlayer build && tsc --noEmit",
     "check-quality": "pnpm lint:check && pnpm format:check && pnpm types:check",
     "prepare": "husky"
   },
