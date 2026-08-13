@@ -59,3 +59,18 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test --all-projects
+
+  e2e:
+    name: Playwright E2E tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: ["setup", "quality", "security"]
+    env:
+      NODE_VERSION: ${{ needs.setup.outputs.node_version }}
+      PNPM_VERSION: ${{ needs.setup.outputs.pnpm_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Run Playwright tests
+        uses: ./.github/actions/playwright

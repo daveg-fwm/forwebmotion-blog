@@ -1,0 +1,40 @@
+name: Playwright Tests
+description: Install Playwright browsers and run E2E tests.
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      uses: ./.github/actions/setup-node
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        pnpm-version: ${{ env.PNPM_VERSION }}
+
+    - name: Install Playwright browsers
+      shell: bash
+      run: pnpm test:e2e:install
+
+    - name: Run Playwright tests
+      shell: bash
+      run: pnpm test:e2e
+
+    - name: Upload Playwright report
+      if: always() && !cancelled()
+      uses: actions/upload-artifact@v6
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+        overwrite: true
+
+    - name: Summarize Playwright run
+      if: always()
+      shell: bash
+      run: |
+        {
+          echo "### Playwright E2E"
+          echo ""
+          echo "- Node: \`${{ env.NODE_VERSION }}\`"
+          echo "- pnpm: \`${{ env.PNPM_VERSION }}\`"
+          echo "- Report artifact: \`playwright-report\`"
+        } >> "$GITHUB_STEP_SUMMARY"
