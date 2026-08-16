@@ -64,7 +64,7 @@ jobs:
     name: Playwright E2E tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    needs: ["setup", "quality", "security"]
+    needs: ["setup", "quality"]
     env:
       NODE_VERSION: ${{ needs.setup.outputs.node_version }}
       PNPM_VERSION: ${{ needs.setup.outputs.pnpm_version }}
