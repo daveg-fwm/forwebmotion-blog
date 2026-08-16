@@ -53,12 +53,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk to check for dependency vulnerabilities
         uses: snyk/actions/node@9adf32b1121593767fc3c057af55b55db032dc04
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test --all-projects
+
+      - name: Run Snyk Code to check for source vulnerabilities
+        uses: snyk/actions/node@9adf32b1121593767fc3c057af55b55db032dc04
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
 
   e2e:
     name: Playwright E2E tests
